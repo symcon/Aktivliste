@@ -34,26 +34,18 @@ class Aktivliste extends IPSModule
 			$variableIDs[] = $line["VariableID"];
 		}
 		
-		//Create array containing target IDs of links
-		$targetedVars = [];
-		$links = IPS_GetChildrenIDs($this->InstanceID);		
-		foreach ($links as $link) {
-			if (IPS_LinkExists($link)) {
-				$targetedVars[] = IPS_GetLink($link)["TargetID"];
-			}
-		}
-
 		//Creating links for all variable IDs in VariableList
 		foreach ($variableList as $line) {
 			$variableID = $line["VariableID"];
 			$this->RegisterMessage($variableID, VM_UPDATE);
-			if (!in_array($variableID, $targetedVars)) {
+			if (!@$this->GetIDForIdent($variableID)) {
 
 				//Create links for variables
 				$linkID = IPS_CreateLink();				
 				IPS_SetName($linkID, IPS_GetName($variableID));
 				IPS_SetParent($linkID, $this->InstanceID);
 				IPS_SetLinkTargetID($linkID, $variableID);
+				IPS_SetIdent($linkID, $variableID);
 				
 				//Setting initial visibility
 				IPS_SetHidden($linkID, !GetValue($variableID));
@@ -61,11 +53,11 @@ class Aktivliste extends IPSModule
 		}
 
 		//Deleting unlisted links
-		foreach ($links as $link) {
-			if (IPS_LinkExists($link)) {
-				if (!in_array(IPS_GetLink($link)["TargetID"], $variableIDs)) {
-					$this->UnregisterMessage(IPS_GetLink($link)["TargetID"], VM_UPDATE);
-					IPS_DeleteLink($link);
+		foreach (IPS_GetChildrenIDs($this->InstanceID) as $linkID) {
+			if (IPS_LinkExists($linkID)) {
+				if (!in_array(IPS_GetLink($linkID)["TargetID"], $variableIDs)) {
+					$this->UnregisterMessage(IPS_GetLink($linkID)["TargetID"], VM_UPDATE);
+					IPS_DeleteLink($linkID);
 				}
 			}
 		}	
@@ -75,16 +67,8 @@ class Aktivliste extends IPSModule
 	public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) 
 	{	
 		if ($Message == VM_UPDATE) {
-			$links = IPS_GetChildrenIDs($this->InstanceID);
-			foreach ($links as $link) {
-				//Only links
-				if (IPS_LinkExists($link)) {
-					if(IPS_GetLink($link)["TargetID"] == $SenderID) {
-						IPS_SetHidden($link, !$Data[0]);
-						break;
-					}
-				}
-			}		
+			$link = $this->GetIDForIdent($SenderID);
+			IPS_SetHidden($link, !$Data[0]);					
 		}
 	}
 
