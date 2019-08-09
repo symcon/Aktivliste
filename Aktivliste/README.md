@@ -1,5 +1,7 @@
 # Aktivliste
 
+Die Aktivliste zeigt alle aktiven Variablen, welche zuvor der Liste auf der Konfigurationsseite hinzugefügt wurden, im WebFront an und bietet die Möglichkeit 
+diese simultan auszuschalten.
 
 ### Inhaltverzeichnis
 
@@ -13,7 +15,7 @@
 
 ### 1. Funktionsumfang
 
-
+* Ermöglicht es den Status ausgewählter Variablen anzuzeigen, sowie diese zu deaktivieren.
 
 ### 2. Voraussetzungen
 
@@ -21,32 +23,29 @@
 
 ### 3. Software-Installation
 
-
+* Über den Modul Store das Modul Aktivliste installieren.
+* Alternativ über das Modul Control folgende URL hinzufügen:
+´https://github.com/symcon/Aktivliste`
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-
+- Unter "Instanz hinzufügen" ist das 'Aktivliste'-Modul aufgeführt.  
 
 __Konfigurationsseite__:
 
+Name      | Beschreibung
+--------- | ---------------------------------
+Variablen | Eine Liste mit Variablen, deren Status überprüft wird.
+
+### 5. WebFront
+
+Auf dem Webfront werden alle aktiven Variablen angezeigt. 
+Mit einem Klick auf "Ausschalten" werden alle angezeigten Variablen ausgeschaltet.
 
 
-### 5. Statusvariablen und Profile
+### 6. PHP-Befehlsreferenz
 
-
-
-##### Statusvariablen
-
-
-##### Profile:
-
-
-
-
-### 6. WebFront
-
-
-
-### 7. PHP-Befehlsreferenz
-
-
+`AL_SwitchOff(integer $InstanzID);`
+Schaltet alle aktiven Variablen aus.
+Beispiel:
+`AL_SwitchOff(integer $InstanzID);`
