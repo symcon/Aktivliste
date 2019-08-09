@@ -47,7 +47,7 @@ class Aktivliste extends IPSModule
 				IPS_SetIdent($linkID, $variableID);
 
 				//Setting initial visibility
-				IPS_SetHidden($linkID, !GetValue($variableID));
+				IPS_SetHidden($linkID, !(GetValue($variableID) ^ $this->IsProfileInverted($variableID)));
 			}
 		}
 
@@ -67,7 +67,7 @@ class Aktivliste extends IPSModule
 	{
 		if ($Message == VM_UPDATE) {
 			$link = $this->GetIDForIdent($SenderID);
-			IPS_SetHidden($link, !$Data[0]);
+			IPS_SetHidden($link, !($Data[0] ^ $this->IsProfileInverted($SenderID)));
 		}
 	}
 
@@ -88,11 +88,23 @@ class Aktivliste extends IPSModule
 						$actionID = $v['VariableAction'];
 					}
 
-					if (($actionID >= 10000) && GetValue($targetID)) {
-						RequestAction($targetID, false);
+					$value = GetValue($targetID) ^ $this->IsProfileInverted($targetID);
+					if (($actionID >= 10000) && $value) {
+						RequestAction($targetID, !GetValue($targetID));
 					}
 				}
-			}
+			}	
 		}
 	}
+
+
+	public function IsProfileInverted($VariableID)
+	{
+		$variableProfileName = IPS_GetVariable($VariableID)["VariableCustomProfile"];
+		if($variableProfileName == "") {
+			$variableProfileName = IPS_GetVariable($VariableID)["VariableProfile"];
+		}
+		return substr($variableProfileName, -strlen(".Reversed")) === ".Reversed";
+	}
+
 }
