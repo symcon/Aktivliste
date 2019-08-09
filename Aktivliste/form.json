@@ -1,0 +1,23 @@
+{
+  "elements": [
+    
+    {
+      "type": "List",
+      "name": "VariableList",
+      "caption": "Variables",
+      "add": true,
+      "delete": true,
+      "columns": [
+        {
+          "caption": "Variables",
+          "name": "VariableID",
+          "width": "auto",
+          "add": 0,
+          "edit": {
+            "type": "SelectVariable"
+          }
+        }
+      ]
+    }
+  ]
+}

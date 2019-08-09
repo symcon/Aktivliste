@@ -1,0 +1,14 @@
+{
+    "id": "{C9B13047-8A35-F335-E58E-945CAF05CEE0}",
+    "name": "Aktivliste",
+    "type": 3,
+    "vendor": "",
+    "aliases": 
+    [
+        "Aktivliste"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "OOA"
+}
