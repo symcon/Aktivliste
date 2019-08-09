@@ -90,11 +90,10 @@ class Aktivliste extends IPSModule
 
 	public function SwitchOff()
 	{
-		$links = IPS_GetChildrenIDs($this->InstanceID);
-		foreach ($links as $link) {
+		foreach (IPS_GetChildrenIDs($this->InstanceID) as $linkID) {
 			//Only links
-			if (IPS_LinkExists($link)) {
-				$targetID = IPS_GetLink($link)["TargetID"];
+			if (IPS_LinkExists($linkID)) {
+				$targetID = IPS_GetLink($linkID)["TargetID"];
 				
 				if (IPS_VariableExists($targetID)) {
 
