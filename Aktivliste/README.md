@@ -14,7 +14,7 @@ diese simultan auszuschalten.
 
 ### 1. Funktionsumfang
 
-* Ermöglicht es den Status ausgewählter Variablen anzuzeigen, sowie diese zu deaktivieren.
+* Zeigt alle aktiven Variablen im WebFront an und erlaubt das Ausschalten dieser.
 
 ### 2. Voraussetzungen
 
@@ -45,6 +45,6 @@ Mit einem Klick auf "Ausschalten" werden alle angezeigten Variablen ausgeschalte
 ### 6. PHP-Befehlsreferenz
 
 `AL_SwitchOff(integer $InstanzID);`
-Schaltet alle aktiven Variablen aus.
+Schaltet alle in der Liste vorhandenen aktiven Variablen aus.
 Beispiel:
-`AL_SwitchOff(integer $InstanzID);`
+`AL_SwitchOff(12345);`
