@@ -13,7 +13,6 @@ class Aktivliste extends IPSModule
 
 		//Scripts
 		$this->RegisterScript("TurnOff", $this->Translate("Turn Off"), "<?php\n\nOOA_SwitchOff(IPS_GetParent(\$_IPS['SELF']));");
-		
 	}
 
 	public function Destroy()
@@ -33,7 +32,7 @@ class Aktivliste extends IPSModule
 		foreach ($variableList as $line) {
 			$variableIDs[] = $line["VariableID"];
 		}
-		
+
 		//Creating links for all variable IDs in VariableList
 		foreach ($variableList as $line) {
 			$variableID = $line["VariableID"];
@@ -41,15 +40,15 @@ class Aktivliste extends IPSModule
 			if (!@$this->GetIDForIdent($variableID)) {
 
 				//Create links for variables
-				$linkID = IPS_CreateLink();				
+				$linkID = IPS_CreateLink();
 				IPS_SetName($linkID, IPS_GetName($variableID));
 				IPS_SetParent($linkID, $this->InstanceID);
 				IPS_SetLinkTargetID($linkID, $variableID);
 				IPS_SetIdent($linkID, $variableID);
-				
+
 				//Setting initial visibility
 				IPS_SetHidden($linkID, !GetValue($variableID));
-			}	
+			}
 		}
 
 		//Deleting unlisted links
@@ -60,15 +59,15 @@ class Aktivliste extends IPSModule
 					IPS_DeleteLink($linkID);
 				}
 			}
-		}	
+		}
 	}
 
 
-	public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) 
-	{	
+	public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
+	{
 		if ($Message == VM_UPDATE) {
 			$link = $this->GetIDForIdent($SenderID);
-			IPS_SetHidden($link, !$Data[0]);					
+			IPS_SetHidden($link, !$Data[0]);
 		}
 	}
 
@@ -78,7 +77,7 @@ class Aktivliste extends IPSModule
 			//Only links
 			if (IPS_LinkExists($linkID)) {
 				$targetID = IPS_GetLink($linkID)["TargetID"];
-				
+
 				if (IPS_VariableExists($targetID)) {
 
 					$v = IPS_GetVariable($targetID);
@@ -88,7 +87,7 @@ class Aktivliste extends IPSModule
 					} else {
 						$actionID = $v['VariableAction'];
 					}
-					
+
 					if (($actionID >= 10000) && GetValue($targetID)) {
 						RequestAction($targetID, false);
 					}
@@ -96,5 +95,4 @@ class Aktivliste extends IPSModule
 			}
 		}
 	}
-
 }
