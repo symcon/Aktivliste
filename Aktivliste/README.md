@@ -1,7 +1,7 @@
 # Aktivliste
 
-Die Aktivliste zeigt alle aktiven Variablen, welche zuvor der Liste auf der Konfigurationsseite hinzugefügt wurden, im WebFront an und bietet die Möglichkeit 
-diese simultan auszuschalten.
+Die Aktivliste zeigt alle angeschalteten, wobei alle Typen unterstützt werden Variablen, welche zuvor der Liste auf der
+Konfigurationsseite hinzugefügt wurden, im WebFront an und bietet die Möglichkeit diese simultan auszuschalten.
 
 ### Inhaltverzeichnis
 
@@ -14,7 +14,7 @@ diese simultan auszuschalten.
 
 ### 1. Funktionsumfang
 
-* Zeigt alle aktiven Variablen im WebFront an und erlaubt das Ausschalten dieser.
+* Zeigt alle angeschalteten Variablen im WebFront an und erlaubt das Ausschalten dieser.
 
 ### 2. Voraussetzungen
 
@@ -36,15 +36,28 @@ Name      | Beschreibung
 --------- | ---------------------------------
 Variablen | Eine Liste mit Variablen, deren Status überprüft wird.
 
+**Variablen werden wie folgt als ausgeschaltet angesehen**:
+
+* Boolean:
+    - mit Profil: false (Reversed)
+    - ohne Profil: false
+
+* Integer/Float:
+    - mit Profil: Minimalwert (Reversed)
+    - ohne Profil: 0
+
+* String:
+    - Mit/Ohne Profil: ""    
+
 ### 5. WebFront
 
-Auf dem Webfront werden alle aktiven Variablen angezeigt. 
+Auf dem Webfront werden alle angeschalteten Variablen angezeigt. 
 Mit einem Klick auf "Ausschalten" werden alle angezeigten Variablen ausgeschaltet.
 
 
 ### 6. PHP-Befehlsreferenz
 
 `AL_SwitchOff(integer $InstanzID);`
-Schaltet alle in der Liste vorhandenen aktiven Variablen aus.
+Schaltet alle in der Liste vorhandenen angeschalteten Variablen aus.
 Beispiel:
 `AL_SwitchOff(12345);`
