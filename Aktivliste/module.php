@@ -86,7 +86,7 @@ class Aktivliste extends IPSModule
 					} else {
 						$actionID = $v['VariableAction'];
 					}
-					if (($actionID >= 10000) && !(GetValue($targetID) == $this->GetSwitchValue($targetID))) {
+					if (($actionID >= 10000) && GetValue($targetID) !== $this->GetSwitchValue($targetID)) {
 						RequestAction($targetID, $this->GetSwitchValue($targetID));
 					}
 				}
@@ -96,6 +96,7 @@ class Aktivliste extends IPSModule
 
 	private function GetSwitchValue($VariableID)
 	{
+		//Return the value corresponding to the variable type.
 		switch(IPS_GetVariable($VariableID)["VariableType"]) {
 			case 0:
 				return($this->IsProfileInverted($VariableID));
@@ -109,12 +110,12 @@ class Aktivliste extends IPSModule
 						return(IPS_GetVariableProfile($this->GetVariableProfile($VariableID))["MinValue"]);
 					}
 				} else {
-					return(0);
+					return 0;
 				}
-				
+					
 			
 			case 3:
-				return("");
+				return "";
 		}
 	}
 
