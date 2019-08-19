@@ -3,4 +3,4 @@
 Folgende Module beinhaltet das Aktivliste Repository:
 
 - __Aktivliste__ ([Dokumentation](Aktivliste))  
-	Zeigt alle angeschalteten Variablen im WebFront an und erlaubt das Ausschalten dieser.
+	Zeigt alle aktiven Variablen im WebFront an und erlaubt das deaktivieren dieser.

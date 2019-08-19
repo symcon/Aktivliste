@@ -1,20 +1,14 @@
 # Aktivliste
 
-Die Aktivliste zeigt alle angeschalteten, wobei alle Typen unterstützt werden Variablen, welche zuvor der Liste auf der
-Konfigurationsseite hinzugefügt wurden, im WebFront an und bietet die Möglichkeit diese simultan auszuschalten.
 
-### Inhaltverzeichnis
+Die Aktivliste zeigt alle aktiven Variablen, im WebFront an und bietet die Möglichkeit 
+diese simultan auszuschalten.  
+Hierzu müssen sie zuvor der Liste auf der Konfigurationsseite hinzugefügt wurden
 
-1. [Funktionsumfang](#1-funktionsumfang)
-2. [Voraussetzungen](#2-voraussetzungen)
-3. [Software-Installation](#3-software-installation)
-4. [Einrichten der Instanzen in IP-Symcon](#4-einrichten-der-instanzen-in-ip-symcon)
-5. [WebFront](#6-webfront)
-6. [PHP-Befehlsreferenz](#7-php-befehlsreferenz)
 
 ### 1. Funktionsumfang
 
-* Zeigt alle angeschalteten Variablen im WebFront an und erlaubt das Ausschalten dieser.
+* Zeigt alle aktiven Variablen im WebFront an und erlaubt das Ausschalten dieser.
 
 ### 2. Voraussetzungen
 
@@ -24,7 +18,7 @@ Konfigurationsseite hinzugefügt wurden, im WebFront an und bietet die Möglichk
 
 * Über den Modul Store das Modul Aktivliste installieren.
 * Alternativ über das Modul Control folgende URL hinzufügen:
-´https://github.com/symcon/Aktivliste`
+`https://github.com/symcon/Aktivliste`
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
@@ -34,30 +28,29 @@ __Konfigurationsseite__:
 
 Name      | Beschreibung
 --------- | ---------------------------------
-Variablen | Eine Liste mit Variablen, deren Status überprüft wird.
+Variablen | Eine Liste mit Variablen, deren Status überprüft wird.    
 
-**Variablen werden wie folgt als ausgeschaltet angesehen**:
+Variablen gelten als aktiv, wenn ... 
 
-* Boolean:
-    - mit Profil: false (Reversed)
-    - ohne Profil: false
+... der Wert eines Integer oder Float größer als der Minimalwert ist. Im Falle eines Variablen Profiles mit .Reversed kleiner als der Maximalwert.  
+... der Wert eines Boolean true ist. Im Falle eines Variablen Profiles mit .Reversed false.  
+... der Wert eines Strings nicht leer ist.
 
-* Integer/Float:
-    - mit Profil: Minimalwert (Reversed)
-    - ohne Profil: 0
+Dementsprechend gelten Variablen als inaktiv, wenn ...  
 
-* String:
-    - Mit/Ohne Profil: ""    
+... der Wert eines Integer oder Float der Minimalwert ist. Im Falle eines Variablen Profiles mit .Reversed der Maximalwert.  
+... der Wert ernes Boolean false ist. Im Falle eines Variablenpofiles mit .Reversed true.  
+... der Wert eines String " " entspricht.  
 
 ### 5. WebFront
 
-Auf dem Webfront werden alle angeschalteten Variablen angezeigt. 
+Auf dem Webfront werden alle aktiven Variablen angezeigt. 
 Mit einem Klick auf "Ausschalten" werden alle angezeigten Variablen ausgeschaltet.
 
 
 ### 6. PHP-Befehlsreferenz
 
 `AL_SwitchOff(integer $InstanzID);`
-Schaltet alle in der Liste vorhandenen angeschalteten Variablen aus.
+Schaltet alle in der Liste vorhandenen aktiven Variablen aus.  
 Beispiel:
 `AL_SwitchOff(12345);`
