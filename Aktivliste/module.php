@@ -96,23 +96,25 @@ class Aktivliste extends IPSModule
     {
         //Return the value corresponding to the variable type.
         switch (IPS_GetVariable($VariableID)["VariableType"]) {
+            //Boolean
             case 0:
-                return($this->IsProfileInverted($VariableID));
-
+                return $this->IsProfileInverted($VariableID);
+            //Integer
             case 1:
+            //Float
             case 2:
                 if (IPS_VariableProfileExists($this->GetVariableProfile($VariableID))) {
                     if ($this->IsProfileInverted($VariableID)) {
-                        return(IPS_GetVariableProfile($this->GetVariableProfile($VariableID))["MaxValue"]);
+                        return IPS_GetVariableProfile($this->GetVariableProfile($VariableID))["MaxValue"];
                     } else {
-                        return(IPS_GetVariableProfile($this->GetVariableProfile($VariableID))["MinValue"]);
+                        return IPS_GetVariableProfile($this->GetVariableProfile($VariableID))["MinValue"];
                     }
                 } else {
                     return 0;
                 }
-                    
-            
+                                
                 // no break
+            //Integer
             case 3:
                 return "";
         }
@@ -124,7 +126,7 @@ class Aktivliste extends IPSModule
         if ($variableProfileName == "") {
             $variableProfileName = IPS_GetVariable($VariableID)["VariableProfile"];
         }
-        return($variableProfileName);
+        return $variableProfileName;
     }
 
     private function IsProfileInverted($VariableID)
