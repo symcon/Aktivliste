@@ -9,7 +9,7 @@
       "delete": true,
       "columns": [
         {
-          "caption": "Variables",
+          "caption": "Variable",
           "name": "VariableID",
           "width": "auto",
           "add": 0,
