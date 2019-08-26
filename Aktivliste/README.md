@@ -32,25 +32,27 @@ Variablen | Eine Liste mit Variablen, deren Status überprüft wird.
 
 Variablen gelten als aktiv, wenn ... 
 
-... der Wert eines Integer oder Float größer als der Minimalwert ist. Im Falle eines Variablen Profiles mit .Reversed kleiner als der Maximalwert.  
-... der Wert eines Boolean true ist. Im Falle eines Variablen Profiles mit .Reversed false.  
-... der Wert eines Strings nicht leer ist.
+... der Wert einer Integer oder Float Variable größer als der Minimalwert ist. Sollte die Variable ein .Reversed Profil haben gilt sie als aktiv,  
+    wenn der Wert kleiner als der Maximalwert ist.  
+... der Wert einer Boolean Variable true ist. Sollte die Variable ein .Reversed Profil haben ist false der aktive Zustand.  
+... der Wert einer String Variable nicht leer ist.
 
 Dementsprechend gelten Variablen als inaktiv, wenn ...  
 
-... der Wert eines Integer oder Float der Minimalwert ist. Im Falle eines Variablen Profiles mit .Reversed der Maximalwert.  
-... der Wert ernes Boolean false ist. Im Falle eines Variablenpofiles mit .Reversed true.  
-... der Wert eines String " " entspricht.  
+... der Wert einer Integer oder Float Variable der Minimalwert ist. Sollte die Variable ein .Reversed Profil haben gilt sie als inaktiv,  
+    wenn der Wert der Maximalwert ist.  
+... der Wert einer Boolean false ist. Sollte die Variable ein .Reversed Profil haben ist true der inaktive Zustand.   
+... der Wert einer String Variable " " entspricht.  
 
 ### 5. WebFront
 
 Auf dem Webfront werden alle aktiven Variablen angezeigt. 
-Mit einem Klick auf "Ausschalten" werden alle angezeigten Variablen ausgeschaltet.
+Mit einem Klick auf "Ausschalten" werden alle angezeigten Variablen auf inaktiv geschaltet.
 
 
 ### 6. PHP-Befehlsreferenz
 
 `AL_SwitchOff(integer $InstanzID);`
-Schaltet alle in der Liste vorhandenen aktiven Variablen aus.  
+Schaltet alle in der Liste vorhandenen aktiven Variablen inaktiv.  
 Beispiel:
 `AL_SwitchOff(12345);`
