@@ -42,7 +42,7 @@ Dementsprechend gelten Variablen als inaktiv, wenn ...
 ... der Wert einer Integer oder Float Variable der Minimalwert ist. Sollte die Variable ein .Reversed Profil haben gilt sie als inaktiv,  
     wenn der Wert der Maximalwert ist.  
 ... der Wert einer Boolean false ist. Sollte die Variable ein .Reversed Profil haben ist true der inaktive Zustand.   
-... der Wert einer String Variable " " entspricht.  
+... der Wert einer String Variable leer ist.  
 
 ### 5. WebFront
 
