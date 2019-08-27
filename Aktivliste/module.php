@@ -99,8 +99,10 @@ class Aktivliste extends IPSModule
             //Boolean
             case 0:
                 return $this->IsProfileInverted($VariableID);
+
             //Integer
             case 1:
+            
             //Float
             case 2:
                 if (IPS_VariableProfileExists($this->GetVariableProfile($VariableID))) {
@@ -117,7 +119,8 @@ class Aktivliste extends IPSModule
             //Integer
             case 3:
                 return "";
-        }
+        
+        }      
     }
 
     private function GetVariableProfile($VariableID)
