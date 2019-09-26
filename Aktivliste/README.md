@@ -1,10 +1,17 @@
 # Aktivliste
-
-
 Die Aktivliste zeigt alle aktiven Variablen, im WebFront an und bietet die Möglichkeit 
 diese simultan auszuschalten.  
 Hierzu müssen sie zuvor der Liste auf der Konfigurationsseite hinzugefügt wurden
 
+### Inhaltsverzeichnis
+
+1. [Funktionsumfang](#1-funktionsumfang)
+2. [Voraussetzungen](#2-voraussetzungen)
+3. [Software-Installation](#3-software-installation)
+4. [Einrichten der Instanzen in IP-Symcon](#4-einrichten-der-instanzen-in-ip-symcon)
+5. [Statusvariablen und Profile](#5-statusvariablen-und-profile)
+6. [WebFront](#6-webfront)
+7. [PHP-Befehlsreferenz](#7-php-befehlsreferenz)
 
 ### 1. Funktionsumfang
 
@@ -22,7 +29,7 @@ Hierzu müssen sie zuvor der Liste auf der Konfigurationsseite hinzugefügt wurd
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-- Unter "Instanz hinzufügen" ist das 'Aktivliste'-Modul aufgeführt.  
+- Unter "Instanz hinzufügen" ist das 'Aktivliste'-Modul unter dem Hersteller '(Gerät)' aufgeführt.  
 
 __Konfigurationsseite__:
 
@@ -44,13 +51,27 @@ Dementsprechend gelten Variablen als inaktiv, wenn ...
 ... der Wert einer Boolean false ist. Sollte die Variable ein .Reversed Profil haben ist true der inaktive Zustand.   
 ... der Wert einer String Variable leer ist.  
 
-### 5. WebFront
+### 5. Statusvariablen und Profile
+
+Die Statusvariablen/Kategorien werden automatisch angelegt. Das Löschen einzelner kann zu Fehlfunktionen führen.
+
+##### Statusvariablen
+
+Name         | Typ    | Beschreibung
+------------ | ------ | -------------------------------
+Ausschalten  | Skript | Schaltet alle noch aktiven Variablen inaktiv. 
+
+##### Profile:
+
+Es werden keine zusätzlichen Profile hinzugefügt
+
+### 6. WebFront
 
 Auf dem Webfront werden alle aktiven Variablen angezeigt. 
 Mit einem Klick auf "Ausschalten" werden alle angezeigten Variablen auf inaktiv geschaltet.
 
 
-### 6. PHP-Befehlsreferenz
+### 7. PHP-Befehlsreferenz
 
 `AL_SwitchOff(integer $InstanzID);`
 Schaltet alle in der Liste vorhandenen aktiven Variablen inaktiv.  
