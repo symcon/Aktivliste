@@ -23,8 +23,8 @@ Hierzu müssen sie zuvor der Liste auf der Konfigurationsseite hinzugefügt wurd
 
 ### 3. Software-Installation
 
-* Über den Modul Store das Modul Aktivliste installieren.
-* Alternativ über das Modul Control folgende URL hinzufügen:
+* Über den Module Store das Modul Aktivliste installieren.
+* Alternativ über das Module Control folgende URL hinzufügen:
 `https://github.com/symcon/Aktivliste`
 
 ### 4. Einrichten der Instanzen in IP-Symcon
@@ -63,7 +63,7 @@ Ausschalten  | Skript | Schaltet alle noch aktiven Variablen inaktiv.
 
 ##### Profile:
 
-Es werden keine zusätzlichen Profile hinzugefügt
+Es werden keine zusätzlichen Profile hinzugefügt.
 
 ### 6. WebFront
 
