@@ -1,5 +1,5 @@
 # Aktivliste
-Die Aktivliste zeigt alle aktiven Variablen, im WebFront an und bietet die Möglichkeit 
+Die Aktivliste zeigt alle aktiven Variablen im WebFront an und bietet die Möglichkeit 
 diese simultan auszuschalten.  
 Hierzu müssen sie zuvor der Liste auf der Konfigurationsseite hinzugefügt wurden
 
