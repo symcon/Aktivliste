@@ -14,6 +14,7 @@ class Aktivliste extends IPSModule
 
         //Scripts
         $this->RegisterScript('TurnOff', $this->Translate('Turn Off'), "<?php\n\nAL_SwitchOff(IPS_GetParent(\$_IPS['SELF']));");
+        $this->RegisterReference($this->GetIDForIdent("TurnOff"));
     }
 
     public function Destroy()
@@ -38,6 +39,7 @@ class Aktivliste extends IPSModule
         foreach ($variableList as $line) {
             $variableID = $line['VariableID'];
             $this->RegisterMessage($variableID, VM_UPDATE);
+            $this->RegisterReference($variableID);
             if (!@$this->GetIDForIdent('Link' . $variableID)) {
 
                 //Create links for variables
@@ -45,6 +47,7 @@ class Aktivliste extends IPSModule
                 IPS_SetParent($linkID, $this->InstanceID);
                 IPS_SetLinkTargetID($linkID, $variableID);
                 IPS_SetIdent($linkID, 'Link' . $variableID);
+                $this->RegisterReference($linkID);
 
                 //Setting initial visibility
                 IPS_SetHidden($linkID, (GetValue($variableID) == $this->GetSwitchValue($variableID)));
@@ -56,6 +59,8 @@ class Aktivliste extends IPSModule
             if (IPS_LinkExists($linkID)) {
                 if (!in_array(IPS_GetLink($linkID)['TargetID'], $variableIDs)) {
                     $this->UnregisterMessage(IPS_GetLink($linkID)['TargetID'], VM_UPDATE);
+                    $this->UnregisterReference(IPS_GetLink($linkID)['TargetID']);
+                    $this->UnregisterReference($linkID);
                     IPS_DeleteLink($linkID);
                 }
             }
