@@ -14,7 +14,7 @@ class Aktivliste extends IPSModule
 
         //Scripts
         $this->RegisterScript('TurnOff', $this->Translate('Turn Off'), "<?php\n\nAL_SwitchOff(IPS_GetParent(\$_IPS['SELF']));");
-        $this->RegisterReference($this->GetIDForIdent("TurnOff"));
+        $this->RegisterReference($this->GetIDForIdent('TurnOff'));
     }
 
     public function Destroy()
