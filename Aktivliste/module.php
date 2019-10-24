@@ -46,7 +46,6 @@ class Aktivliste extends IPSModule
                 IPS_SetParent($linkID, $this->InstanceID);
                 IPS_SetLinkTargetID($linkID, $variableID);
                 IPS_SetIdent($linkID, 'Link' . $variableID);
-                $this->RegisterReference($linkID);
 
                 //Setting initial visibility
                 IPS_SetHidden($linkID, (GetValue($variableID) == $this->GetSwitchValue($variableID)));
