@@ -38,6 +38,7 @@ class Aktivliste extends IPSModule
         foreach ($variableList as $line) {
             $variableID = $line['VariableID'];
             $this->RegisterMessage($variableID, VM_UPDATE);
+            $this->RegisterReference($variableID);
             if (!@$this->GetIDForIdent('Link' . $variableID)) {
 
                 //Create links for variables
@@ -56,6 +57,8 @@ class Aktivliste extends IPSModule
             if (IPS_LinkExists($linkID)) {
                 if (!in_array(IPS_GetLink($linkID)['TargetID'], $variableIDs)) {
                     $this->UnregisterMessage(IPS_GetLink($linkID)['TargetID'], VM_UPDATE);
+                    $this->UnregisterReference(IPS_GetLink($linkID)['TargetID']);
+                    $this->UnregisterReference($linkID);
                     IPS_DeleteLink($linkID);
                 }
             }
