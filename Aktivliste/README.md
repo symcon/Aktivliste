@@ -29,7 +29,7 @@ Hierzu müssen sie zuvor der Liste auf der Konfigurationsseite hinzugefügt wurd
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-- Unter "Instanz hinzufügen" ist das 'Aktivliste'-Modul unter dem Hersteller '(Gerät)' aufgeführt.  
+- Unter "Instanz hinzufügen" kann das 'Aktivliste'-Modul mithilfe der Schnellsuchhe einfach gefunden werden.
 
 __Konfigurationsseite__:
 
