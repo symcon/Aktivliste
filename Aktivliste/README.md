@@ -30,7 +30,7 @@ Hierzu müssen sie zuvor der Liste auf der Konfigurationsseite hinzugefügt wurd
 ### 4. Einrichten der Instanzen in IP-Symcon
 
 - Unter "Instanz hinzufügen" kann das 'Aktivliste'-Modul mithilfe des Schnellfilters gefunden werden.
-    * Weitere Information in der Dokumentation der Instanzen: [Dokumentation der Instanzen](https://www.symcon.de/service/dokumentation/konzepte/instanzen/#Instanz_hinzufügen)
+    - Weitere Informationen in der [Dokumentation der Instanzen](https://www.symcon.de/service/dokumentation/konzepte/instanzen/#Instanz_hinzufügen)
 
 __Konfigurationsseite__:
 
