@@ -36,6 +36,7 @@ __Konfigurationsseite__:
 
 Name      | Beschreibung
 --------- | ---------------------------------
+Nur Lesen | Verhindert das alle Variablen simultan auszuschalten.
 Variablen | Eine Liste mit Variablen, deren Status überprüft wird.    
 
 Variablen gelten als aktiv, wenn ... 
@@ -60,7 +61,7 @@ Die Statusvariablen/Kategorien werden automatisch angelegt. Das Löschen einzeln
 
 Name         | Typ    | Beschreibung
 ------------ | ------ | -------------------------------
-Ausschalten  | Skript | Schaltet alle noch aktiven Variablen inaktiv. 
+Ausschalten  | Skript | Schaltet alle noch aktiven Variablen inaktiv.
 
 ##### Profile:
 

@@ -11,6 +11,7 @@ class Aktivliste extends IPSModule
 
         //Properties
         $this->RegisterPropertyString('VariableList', '[]');
+        $this->RegisterPropertyBoolean('ReadOnly', false);
 
         //Scripts
         $this->RegisterScript('TurnOff', $this->Translate('Turn Off'), "<?php\n\nAL_SwitchOff(IPS_GetParent(\$_IPS['SELF']));");
@@ -63,6 +64,9 @@ class Aktivliste extends IPSModule
                 }
             }
         }
+
+        //Hide the Script if readOnly is true
+        IPS_SetHidden($this->GetIDForIdent('TurnOff'), $this->ReadPropertyBoolean('ReadOnly'));
     }
 
     public function MessageSink($TimeStamp, $SenderID, $Message, $Data)

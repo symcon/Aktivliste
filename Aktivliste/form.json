@@ -1,6 +1,10 @@
 {
   "elements": [
-    
+    {
+      "type": "CheckBox",
+      "caption": "Read Only",
+      "name": "ReadOnly"
+    },
     {
       "type": "List",
       "name": "VariableList",
