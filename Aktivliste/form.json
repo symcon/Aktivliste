@@ -2,8 +2,8 @@
   "elements": [
     {
       "type": "CheckBox",
-      "caption": "Read Only",
-      "name": "ReadOnly"
+      "caption": "Turn Off Action",
+      "name": "TurnOffAction"
     },
     {
       "type": "List",
