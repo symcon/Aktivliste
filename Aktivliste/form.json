@@ -1,23 +1,22 @@
 {
-  "elements": [
-    
-    {
-      "type": "List",
-      "name": "VariableList",
-      "caption": "Variables",
-      "add": true,
-      "delete": true,
-      "columns": [
+    "elements": [
         {
-          "caption": "Variable",
-          "name": "VariableID",
-          "width": "auto",
-          "add": 0,
-          "edit": {
-            "type": "SelectVariable"
-          }
+            "type": "List",
+            "name": "VariableList",
+            "caption": "Variables",
+            "add": true,
+            "delete": true,
+            "columns": [
+                {
+                    "caption": "Variable",
+                    "name": "VariableID",
+                    "width": "auto",
+                    "add": 0,
+                    "edit": {
+                        "type": "SelectVariable"
+                    }
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
