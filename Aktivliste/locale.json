@@ -1,11 +1,9 @@
 {
-	"translations": {
-		"de": { 
-			
-			"Variables": "Variablen",
-			"Variable": "Variable",
-			"Turn Off": "Ausschalten"
-			
-		}
-	}
+    "translations": {
+        "de": {
+            "Variables": "Variablen",
+            "Variable": "Variable",
+            "Turn Off": "Ausschalten"
+        }
+    }
 }
