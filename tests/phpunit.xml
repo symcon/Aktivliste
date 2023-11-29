@@ -6,7 +6,7 @@
   </php>
   <source>
     <include>
-      <directory suffix=".php">../Aktivliste</directory>
+      <directory suffix=".php">../ActiveList</directory>
     </include>
   </source>
 </phpunit>
