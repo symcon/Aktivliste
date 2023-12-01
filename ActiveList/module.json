@@ -1,14 +1,14 @@
 {
     "id": "{C9B13047-8A35-F335-E58E-945CAF05CEE0}",
-    "name": "Aktivliste",
+    "name": "Active List",
     "type": 3,
     "vendor": "",
     "aliases": [
-        "Aktivliste"
+        "Active List"
     ],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
     "prefix": "AL",
-    "url": "https://github.com/symcon/Aktivliste/tree/master/Aktivliste"
+    "url": "https://www.symcon.de/en/service/documentation/module-reference/active-list/"
 }

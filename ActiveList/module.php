@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-class Aktivliste extends IPSModule
+class ActiveList extends IPSModule
 {
     public function Create()
     {

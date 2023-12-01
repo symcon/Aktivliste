@@ -1,0 +1,11 @@
+{
+    "translations": {
+        "de": {
+            "Variables": "Variablen",
+            "Variable": "Variable",
+            "Turn Off": "Ausschalten",
+            "Active List": "Aktivliste",
+            "https://www.symcon.de/en/service/documentation/module-reference/active-list/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/aktivliste/"
+        }
+    }
+}
