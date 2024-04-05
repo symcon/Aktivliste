@@ -8,8 +8,8 @@ class AktivlisteValidationTest extends TestCaseSymconValidation
     {
         $this->validateLibrary(__DIR__ . '/..');
     }
-    public function testValidateAktivlisteModule(): void
+    public function testValidateActiveListModule(): void
     {
-        $this->validateModule(__DIR__ . '/../Aktivliste');
+        $this->validateModule(__DIR__ . '/../ActiveList');
     }
 }
