@@ -1,6 +1,11 @@
 {
     "elements": [
         {
+            "type": "CheckBox",
+            "caption": "Turn Off Action",
+            "name": "TurnOffAction"
+        },
+        {
             "type": "List",
             "name": "VariableList",
             "caption": "Variables",
