@@ -11,9 +11,7 @@ class ActiveList extends IPSModule
 
         //Properties
         $this->RegisterPropertyString('VariableList', '[]');
-
-        //Scripts
-        $this->RegisterScript('TurnOff', $this->Translate('Turn Off'), "<?php\n\nAL_SwitchOff(IPS_GetParent(\$_IPS['SELF']));");
+        $this->RegisterPropertyBoolean('TurnOffAction', true);
     }
 
     public function Destroy()
@@ -62,6 +60,13 @@ class ActiveList extends IPSModule
                     IPS_DeleteLink($linkID);
                 }
             }
+        }
+
+        //Script for turn off
+        if ($this->ReadPropertyBoolean('TurnOffAction')) {
+            $this->RegisterScript('TurnOff', $this->Translate('Turn Off'), "<?php\n\nAL_SwitchOff(IPS_GetParent(\$_IPS['SELF']));");
+        } elseif (@$this->GetIDForIdent('TurnOff')) {
+            IPS_DeleteScript($this->GetIDForIdent('TurnOff'), true);
         }
     }
 
