@@ -23,5 +23,22 @@
                 }
             ]
         }
+    ],
+    "actions": [
+        {
+            "type": "RowLayout",
+            "items": [
+                {
+                    "type": "Button",
+                    "caption": "Reset Link Names",
+                    "onClick": "AL_UpdateLinkNames($id, 0);"
+                },
+                {
+                    "type": "Button",
+                    "caption": "Update Link Names from Parent",
+                    "onClick": "AL_UpdateLinkNames($id, 1);"
+                }
+            ]
+        }
     ]
 }

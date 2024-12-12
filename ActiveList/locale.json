@@ -6,6 +6,8 @@
             "Turn Off": "Ausschalten",
             "Turn Off Action": "Aktion zum Ausschalten",
             "Active List": "Aktivliste",
+            "Reset Link Names": "Link Namen zurücksetzen",
+            "Update Link Names from Parent": "Link Namen vom übergeordneten Element übernehmen",
             "https://www.symcon.de/en/service/documentation/module-reference/active-list/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/aktivliste/"
         }
     }

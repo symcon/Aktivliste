@@ -101,6 +101,22 @@ class ActiveList extends IPSModule
         }
     }
 
+    public function UpdateLinkNames($Type)
+    {
+        $variableList = json_decode($this->ReadPropertyString('VariableList'), true);
+        foreach ($variableList as $line) {
+            $variableID = $line['VariableID'];
+            $linkID = @$this->GetIDForIdent('Link' . $variableID);
+            if ($linkID) {
+                $linkName = "";
+                if ($Type == 1) {
+                    $linkName = IPS_GetName(IPS_GetParent($variableID));
+                }
+                IPS_SetName($linkID, $linkName);
+            }
+        }
+    }
+
     private function GetSwitchValue($VariableID)
     {
         //Return the value corresponding to the variable type.
