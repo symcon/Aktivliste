@@ -35,8 +35,18 @@
                 },
                 {
                     "type": "Button",
-                    "caption": "Update Link Names from Parent",
+                    "caption": "Update Link Names (One Level)",
                     "onClick": "AL_UpdateLinkNames($id, 1);"
+                },
+                {
+                    "type": "Button",
+                    "caption": "Update Link Names (Two Levels)",
+                    "onClick": "AL_UpdateLinkNames($id, 2);"
+                },
+                {
+                    "type": "Button",
+                    "caption": "Update Link Names (Full Location)",
+                    "onClick": "AL_UpdateLinkNames($id, 99);"
                 }
             ]
         }

@@ -109,6 +109,29 @@ class ActiveList extends IPSModule
             $linkID = @$this->GetIDForIdent('Link' . $variableID);
             if ($linkID) {
                 $linkName = "";
+                switch ($Type) {
+                    case 0:
+                        // Leave empty to inherit name from variableID
+                        break;
+                    case 1:
+                        $linkName = IPS_GetName(IPS_GetParent($variableID));
+                        break;
+                    case 2:
+                        $parent1 = IPS_GetParent($variableID);
+                        $parent2 = IPS_GetParent($parent1);
+                        $linkName = sprintf("%s (%s)", IPS_GetName($parent1), IPS_GetName($parent2));
+                        break;
+                    case 99:
+                        $parent = IPS_GetParent($variableID);
+                        $linkName = IPS_GetName($parent);
+                        $location = [];
+                        $parent = IPS_GetParent($parent);
+                        while ($parent != 0) {
+                            $location[] = IPS_GetName($parent);
+                            $parent = IPS_GetParent($parent);
+                        }
+                        $linkName = sprintf("%s (%s)", $linkName, implode(", ", $location));
+                        break;                }
                 if ($Type == 1) {
                     $linkName = IPS_GetName(IPS_GetParent($variableID));
                 }
