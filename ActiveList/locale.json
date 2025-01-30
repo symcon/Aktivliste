@@ -7,6 +7,9 @@
             "Turn Off Action": "Aktion zum Ausschalten",
             "Active List": "Aktivliste",
             "Reset Link Names": "Link Namen zurücksetzen",
+            "Update Link Names (One Level)": "Link Namen aktualisieren (Eine Ebene)",
+            "Update Link Names (Two Levels)": "Link Namen aktualisieren (Zwei Ebene)",
+            "Update Link Names (Full Location)": "Link Namen aktualisieren (Vollständiger Pfad)",
             "Update Link Names from Parent": "Link Namen vom übergeordneten Element übernehmen",
             "https://www.symcon.de/en/service/documentation/module-reference/active-list/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/aktivliste/"
         }
