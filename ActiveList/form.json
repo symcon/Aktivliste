@@ -6,6 +6,35 @@
             "name": "TurnOffAction"
         },
         {
+            "type": "ExpansionPanel",
+            "caption": "Status Variables",
+            "items": [
+                {
+                    "type": "CheckBox",
+                    "name": "EnableActive",
+                    "caption": "Enable Active Variable (Bool)"
+                },
+                {
+                    "type": "CheckBox",
+                    "name": "EnableActiveCount",
+                    "caption": "Enable Active Count Variable (Integer)"
+                },
+                {
+                    "type": "CheckBox",
+                    "name": "EnableActiveHTML",
+                    "caption": "Enable Active List Variable (HTML)"
+                },
+                {
+                    "type": "NumberSpinner",
+                    "name": "FontSize",
+                    "caption": "Font Size (px, 0 = Default)",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "suffix": "px"
+                }
+            ]
+        },
+        {
             "type": "List",
             "name": "VariableList",
             "caption": "Variables",

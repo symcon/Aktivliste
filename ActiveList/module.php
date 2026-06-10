@@ -12,6 +12,10 @@ class ActiveList extends IPSModule
         //Properties
         $this->RegisterPropertyString('VariableList', '[]');
         $this->RegisterPropertyBoolean('TurnOffAction', true);
+        $this->RegisterPropertyBoolean('EnableActive', false);
+        $this->RegisterPropertyBoolean('EnableActiveCount', false);
+        $this->RegisterPropertyBoolean('EnableActiveHTML', false);
+        $this->RegisterPropertyInteger('FontSize', 0);
     }
 
     public function Destroy()
@@ -24,6 +28,10 @@ class ActiveList extends IPSModule
     {
         //Never delete this line!
         parent::ApplyChanges();
+
+        $this->MaintainVariable('Active', $this->Translate('Active'), VARIABLETYPE_BOOLEAN, '~Switch', 10, $this->ReadPropertyBoolean('EnableActive'));
+        $this->MaintainVariable('ActiveCount', $this->Translate('Active Count'), VARIABLETYPE_INTEGER, '', 11, $this->ReadPropertyBoolean('EnableActiveCount'));
+        $this->MaintainVariable('ActiveHTML', $this->Translate('Active List'), VARIABLETYPE_STRING, '~HTMLBox', 12, $this->ReadPropertyBoolean('EnableActiveHTML'));
 
         //Creating array containing variable IDs in List
         $variableIDs = [];
@@ -68,6 +76,8 @@ class ActiveList extends IPSModule
         } elseif (@$this->GetIDForIdent('TurnOff')) {
             IPS_DeleteScript($this->GetIDForIdent('TurnOff'), true);
         }
+
+        $this->UpdateStatusVariables();
     }
 
     public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
@@ -75,6 +85,8 @@ class ActiveList extends IPSModule
         if ($Message == VM_UPDATE) {
             $linkID = $this->GetIDForIdent('Link' . $SenderID);
             IPS_SetHidden($linkID, $Data[0] == $this->GetSwitchValue($SenderID));
+
+            $this->UpdateStatusVariables();
         }
     }
 
@@ -141,6 +153,71 @@ class ActiveList extends IPSModule
         }
     }
 
+    private function UpdateStatusVariables()
+    {
+        $enableActive = $this->ReadPropertyBoolean('EnableActive');
+        $enableCount = $this->ReadPropertyBoolean('EnableActiveCount');
+        $enableHTML = $this->ReadPropertyBoolean('EnableActiveHTML');
+
+        if (!$enableActive && !$enableCount && !$enableHTML) {
+            return;
+        }
+
+        $activeNames = [];
+        $activeCount = 0;
+
+        foreach (IPS_GetChildrenIDs($this->InstanceID) as $childID) {
+            if (!IPS_LinkExists($childID)) {
+                continue;
+            }
+
+            $targetID = IPS_GetLink($childID)['TargetID'];
+
+            if (!IPS_VariableExists($targetID)) {
+                continue;
+            }
+
+            if (GetValue($targetID) !== $this->GetSwitchValue($targetID)) {
+                $activeCount++;
+
+                if ($enableHTML) {
+                    //Link name empty means inherited from target
+                    $name = IPS_GetName($childID);
+                    if ($name === '') {
+                        $name = IPS_GetName($targetID);
+                    }
+                    $activeNames[] = $name;
+                }
+            }
+        }
+
+        if ($enableActive) {
+            $this->SetValue('Active', $activeCount > 0);
+        }
+
+        if ($enableCount) {
+            $this->SetValue('ActiveCount', $activeCount);
+        }
+
+        if ($enableHTML) {
+            sort($activeNames);
+            $html = '';
+            if ($activeCount > 0) {
+                $fontSize = $this->ReadPropertyInteger('FontSize');
+                $style = 'margin:0; padding-left:20px;';
+                if ($fontSize > 0) {
+                    $style .= ' font-size:' . $fontSize . 'px;';
+                }
+                $html = '<ul style="' . $style . '">' . PHP_EOL;
+                foreach ($activeNames as $name) {
+                    $html .= '  <li>' . htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</li>' . PHP_EOL;
+                }
+                $html .= '</ul>';
+            }
+            $this->SetValue('ActiveHTML', $html);
+        }
+    }
+
     private function GetSwitchValue($VariableID)
     {
         //Return the value corresponding to the variable type.
@@ -156,12 +233,21 @@ class ActiveList extends IPSModule
             case 2:
                 if (IPS_VariableProfileExists($this->GetVariableProfile($VariableID))) {
                     if ($this->IsProfileInverted($VariableID)) {
-                        return IPS_GetVariableProfile($this->GetVariableProfile($VariableID))['MaxValue'];
+                        $value = IPS_GetVariableProfile($this->GetVariableProfile($VariableID))['MaxValue'];
                     } else {
-                        return IPS_GetVariableProfile($this->GetVariableProfile($VariableID))['MinValue'];
+                        $value = IPS_GetVariableProfile($this->GetVariableProfile($VariableID))['MinValue'];
                     }
+                    //Profile values are always float, cast to int for integer variables
+                    if (IPS_GetVariable($VariableID)['VariableType'] == 1) {
+                        return intval($value);
+                    }
+                    return floatval($value);
                 } else {
-                    return 0;
+                    //No profile: return type-consistent zero
+                    if (IPS_GetVariable($VariableID)['VariableType'] == 1) {
+                        return 0;
+                    }
+                    return 0.0;
                 }
 
                 // no break
