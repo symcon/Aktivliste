@@ -14,7 +14,7 @@ class ActiveList extends IPSModule
         $this->RegisterPropertyBoolean('TurnOffAction', true);
         $this->RegisterPropertyBoolean('EnableActive', false);
         $this->RegisterPropertyBoolean('EnableActiveCount', false);
-        $this->RegisterPropertyBoolean('EnableActiveHTML', false);
+        $this->RegisterPropertyBoolean('EnableActiveEnumeration', false);
         $this->RegisterPropertyInteger('FontSize', 0);
     }
 
@@ -29,9 +29,9 @@ class ActiveList extends IPSModule
         //Never delete this line!
         parent::ApplyChanges();
 
-        $this->MaintainVariable('Active', $this->Translate('Active'), VARIABLETYPE_BOOLEAN, '~Switch', 10, $this->ReadPropertyBoolean('EnableActive'));
-        $this->MaintainVariable('ActiveCount', $this->Translate('Active Count'), VARIABLETYPE_INTEGER, '', 11, $this->ReadPropertyBoolean('EnableActiveCount'));
-        $this->MaintainVariable('ActiveHTML', $this->Translate('Active List'), VARIABLETYPE_STRING, '~HTMLBox', 12, $this->ReadPropertyBoolean('EnableActiveHTML'));
+        $this->MaintainVariable('Active', $this->Translate('Active'), VARIABLETYPE_BOOLEAN, [ 'PRESENTATION' => VARIABLE_PRESENTATION_SWITCH ], 10, $this->ReadPropertyBoolean('EnableActive'));
+        $this->MaintainVariable('ActiveCount', $this->Translate('Active Count'), VARIABLETYPE_INTEGER, [ 'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION ], 11, $this->ReadPropertyBoolean('EnableActiveCount'));
+        $this->MaintainVariable('ActiveEnumeration', $this->Translate('Active Variables'), VARIABLETYPE_STRING, [ 'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION, 'MULTILINE' => true ], 12, $this->ReadPropertyBoolean('EnableActiveEnumeration'));
 
         //Creating array containing variable IDs in List
         $variableIDs = [];
@@ -157,9 +157,9 @@ class ActiveList extends IPSModule
     {
         $enableActive = $this->ReadPropertyBoolean('EnableActive');
         $enableCount = $this->ReadPropertyBoolean('EnableActiveCount');
-        $enableHTML = $this->ReadPropertyBoolean('EnableActiveHTML');
+        $enableEnumeration = $this->ReadPropertyBoolean('EnableActiveEnumeration');
 
-        if (!$enableActive && !$enableCount && !$enableHTML) {
+        if (!$enableActive && !$enableCount && !$enableEnumeration) {
             return;
         }
 
@@ -180,7 +180,7 @@ class ActiveList extends IPSModule
             if (GetValue($targetID) !== $this->GetSwitchValue($targetID)) {
                 $activeCount++;
 
-                if ($enableHTML) {
+                if ($enableEnumeration) {
                     //Link name empty means inherited from target
                     $name = IPS_GetName($childID);
                     if ($name === '') {
@@ -199,22 +199,9 @@ class ActiveList extends IPSModule
             $this->SetValue('ActiveCount', $activeCount);
         }
 
-        if ($enableHTML) {
+        if ($enableEnumeration) {
             sort($activeNames);
-            $html = '';
-            if ($activeCount > 0) {
-                $fontSize = $this->ReadPropertyInteger('FontSize');
-                $style = 'margin:0; padding-left:20px;';
-                if ($fontSize > 0) {
-                    $style .= ' font-size:' . $fontSize . 'px;';
-                }
-                $html = '<ul style="' . $style . '">' . PHP_EOL;
-                foreach ($activeNames as $name) {
-                    $html .= '  <li>' . htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</li>' . PHP_EOL;
-                }
-                $html .= '</ul>';
-            }
-            $this->SetValue('ActiveHTML', $html);
+            $this->SetValue('ActiveEnumeration', join("\n", $activeNames));
         }
     }
 
