@@ -31,6 +31,7 @@
             "name": "VariableList",
             "caption": "Variables",
             "add": true,
+            "multiAdd": true,
             "delete": true,
             "columns": [
                 {
