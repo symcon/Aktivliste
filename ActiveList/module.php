@@ -29,7 +29,7 @@ class ActiveList extends IPSModule
         //Never delete this line!
         parent::ApplyChanges();
 
-        $this->MaintainVariable('Active', $this->Translate('Active'), VARIABLETYPE_BOOLEAN, [ 'PRESENTATION' => VARIABLE_PRESENTATION_SWITCH ], 10, $this->ReadPropertyBoolean('EnableActive'));
+        $this->MaintainVariable('Active', $this->Translate('Active'), VARIABLETYPE_BOOLEAN, [ 'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION ], 10, $this->ReadPropertyBoolean('EnableActive'));
         $this->MaintainVariable('ActiveCount', $this->Translate('Active Count'), VARIABLETYPE_INTEGER, [ 'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION ], 11, $this->ReadPropertyBoolean('EnableActiveCount'));
         $this->MaintainVariable('ActiveEnumeration', $this->Translate('Active Variables'), VARIABLETYPE_STRING, [ 'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION, 'MULTILINE' => true ], 12, $this->ReadPropertyBoolean('EnableActiveEnumeration'));
 
